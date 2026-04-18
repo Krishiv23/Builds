@@ -1,0 +1,22 @@
+# FIFO eviction test
+# Buffer capacity = 4. Fill it, then insert one more.
+# Token inserted first (id=1) should be evicted.
+
+INSERT 1 5 "alpha"
+INSERT 2 3 "beta"
+INSERT 3 8 "gamma"
+INSERT 4 1 "delta"
+
+PRINT
+
+# This insert should evict id=1 (oldest insertion)
+INSERT 5 4 "epsilon"
+
+PRINT
+STATS
+
+ACCESS 2
+ACCESS 99
+
+STATS
+QUIT

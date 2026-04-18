@@ -1,0 +1,26 @@
+# LRU eviction test
+# Buffer capacity = 4. Fill it, access some tokens, then insert a new one.
+# The least recently accessed token should be evicted.
+
+INSERT 1 5 "alpha"
+INSERT 2 3 "beta"
+INSERT 3 8 "gamma"
+INSERT 4 1 "delta"
+
+# Access 1, 2, 3 — leaving id=4 as least recently accessed
+ACCESS 1
+ACCESS 2
+ACCESS 3
+
+PRINT
+
+# id=4 is LRU — should be evicted
+INSERT 5 4 "epsilon"
+
+PRINT
+STATS
+
+DELETE 2
+PRINT
+STATS
+QUIT

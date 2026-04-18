@@ -1,0 +1,29 @@
+# PRIORITY eviction test
+# Buffer capacity = 4. Fill with mixed priorities.
+# Lowest-priority token should be evicted first.
+# Tie-break: among equal priorities, oldest insert_time is evicted.
+
+INSERT 10 5 "high-prio"
+INSERT 20 1 "low-prio"
+INSERT 30 3 "mid-prio"
+INSERT 40 1 "also-low-prio"
+
+PRINT
+
+# id=20 has lowest priority (1), inserted before id=40 -> evicted
+INSERT 50 7 "very-high"
+
+PRINT
+
+# id=40 is now the only priority-1 token, evict it next
+INSERT 60 9 "top"
+
+PRINT
+STATS
+
+# Re-insert an existing id (update in place)
+INSERT 30 10 "upgraded"
+PRINT
+
+STATS
+QUIT
