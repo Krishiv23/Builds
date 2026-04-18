@@ -1,4 +1,4 @@
-# token_buffer
+# Memory-Constrained Token Buffer Simulator
 
 A CLI simulator for a fixed-size token buffer with pluggable eviction policies.  
 Written in C (C11), no external dependencies. Built as a clean undergraduate systems project.
